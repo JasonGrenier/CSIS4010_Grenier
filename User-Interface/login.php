@@ -1,3 +1,6 @@
+<?php
+include "Backend/global.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,14 +38,17 @@
 <div class="container mt-5">
   <h2 class="text-center">K&M Beauty Lounge</h2>
   <p class="text-center">Professional Salon Services</p>
-  <form>
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-    </div>
+  <form action="<?php echo "$root/Backend/login_process.php"?>" method="POST">
+      <div class="form-group">
+          <label for="username">Username:</label><input class="form-control" placeholder="Enter username"
+                  value="<?php echo htmlspecialchars($_POST["username"], ENT_QUOTES); ?>"
+                  type="text" name="username" id="username" required>
+      </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+      <input type="password" class="form-control" id="password" name="password"
+             value="<?php echo htmlspecialchars($_POST["password"], ENT_QUOTES); ?>"
+             placeholder="Enter password" required>
     </div>
     <button type="submit" class="btn btn-salon btn-block">Login</button>
   </form>

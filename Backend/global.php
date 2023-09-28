@@ -11,6 +11,3 @@ ini_set('display_errors', 1);
 # Singleton object to connection to database
 database_manager::getInstance()->getConnection();
 
-user_manager::logInUser("JGrenier12", "Password2");
-user_manager::validateToken(user_manager::validateToken());
-

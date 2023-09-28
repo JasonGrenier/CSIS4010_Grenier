@@ -23,8 +23,8 @@ class user_manager
     public function createUser($token){
         // fetch username
         $userQuery = mysqli_query(database_manager::getInstance()->getConnection(),
-            "SELECT user_name, first_name, last_name, phone_number, cupload_users.id FROM cupload_users, tokens 
-            WHERE cupload_users.id = tokens.owner_id AND tokens.token='$token';");
+            "SELECT username, first_name, last_name, phone_number, cupload_users.id FROM users, tokens 
+            WHERE users.id = tokens.owner_id AND tokens.token='$token';");
         $userJSON = mysqli_fetch_assoc($userQuery);
         $this->username = $userJSON["user_name"];
         $this->firstName = $userJSON["first_name"];
@@ -60,7 +60,7 @@ class user_manager
     public function getEmail(){
         return $this->email;
     }
-    static function logInUser($username, $password){
+    static function logInUser($username, $password): array{
         $connection = database_manager::getInstance()->getConnection();
         $errorMessage = "";
         $errorCode = 0;
@@ -72,8 +72,7 @@ class user_manager
             $errorCode = 1;
             $errorMessage = "Username or password incorrect.";
             $logInResponse = array("errorCode" => $errorCode, "errorMessage" => $errorMessage);
-            echo json_encode($logInResponse);
-            die();
+            return $logInResponse;
         }
 
         // generate token and insert into data base
@@ -88,12 +87,10 @@ class user_manager
         // if there was an error collecting the user's data
         if($userInfoJSON['errorCode'] == 1){
             // echo the error and kill the process
-            $userInfoJSON = json_encode($userInfoJSON);
-            echo $userInfoJSON;
-            die();
+            return $userInfoJSON;
         }
         $logInResponse = array("errorCode" => $errorCode, "errorMessage" => $errorMessage, "token" => $token);
-        echo json_encode(array_merge($logInResponse,$userInfoJSON));
+        return array_merge($logInResponse,$userInfoJSON);
     }
 
     static function sendUserData($token): array
