@@ -39,6 +39,7 @@ $registerResponseEnd = ". Please double check entries are valid.";
 if (!isset($registerResponse)){
     echo "Registration successful.";
     # encrypt password
+    $password = password_hash($password, PASSWORD_BCRYPT, ["salt" => $salt]);
     # store user data in database
     mysqli_query($connection, "insert into users (first_name, last_name, username, password, phone_number, email) values('$firstName', '$lastName', 
                                                                                                     '$username', '$password', '$phone', '$email')");
