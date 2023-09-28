@@ -35,6 +35,13 @@ include "Backend/global.php"
   </style>
 </head>
 <body>
+<?php
+if($loginResponse["errorCode"] == 1){
+    echo '<div class="alert alert-danger" role="alert">';
+    echo $loginResponse["errorMessage"];
+    echo '</div>';
+}
+?>
 <div class="container mt-5">
   <h2 class="text-center">K&M Beauty Lounge</h2>
   <p class="text-center">Professional Salon Services</p>
