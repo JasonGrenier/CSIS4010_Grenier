@@ -3,12 +3,12 @@
 # error_reporting(E_ALL);
 # ini_set('display_errors', 1);
 
+$salt = "jlsasndajncfdjnskdkjdsoksjk";
+
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 include "$root/Database/database_manager.php";
 include "$root/Database/user_manager.php";
 
-# This is where all connections and global vars / methods will be stored
-
-# Singleton object to connection to database
-database_manager::getInstance()->getConnection();
+# Singleton object to connect to database
+$connection = database_manager::getInstance()->getConnection();
 

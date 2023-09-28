@@ -45,7 +45,7 @@ if($loginResponse["errorCode"] == 1){
 <div class="container mt-5">
   <h2 class="text-center">K&M Beauty Lounge</h2>
   <p class="text-center">Professional Salon Services</p>
-  <form action="<?php echo "$root/Backend/login_process.php"?>" method="POST">
+  <form action="<?php echo "/Backend/login_process.php"?>" method="POST">
       <div class="form-group">
           <label for="username">Username:</label><input class="form-control" placeholder="Enter username"
                   value="<?php echo htmlspecialchars($_POST["username"], ENT_QUOTES); ?>"
@@ -60,7 +60,7 @@ if($loginResponse["errorCode"] == 1){
     <button type="submit" class="btn btn-salon btn-block">Login</button>
   </form>
   <div class="text-center mt-3">
-    <a href="password_reset.html">Forgot Password?</a> | <a href="register.html">Sign Up</a>
+    <a href="<?php echo "/User-Interface/password_reset.php"?>">Forgot Password?</a> | <a href="<?php echo "/User-Interface/register.php"?>">Sign Up</a>
   </div>
 </div>
 

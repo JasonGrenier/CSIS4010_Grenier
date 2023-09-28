@@ -32,33 +32,55 @@
   </style>
 </head>
 <body>
+<?php
+if($registerResponse["errorCode"] == 1){
+    echo '<div class="alert alert-danger" role="alert">';
+    echo $registerResponse["errorMessage"];
+    echo '</div>';
+}
+?>
 <div class="container mt-5">
   <h2 class="text-center">Sign Up for K&M Beauty Lounge</h2>
-  <form>
+  <form action="<?php echo "/Backend/register_process.php"?>" method="POST">
     <div class="form-group">
       <label for="firstName">First Name:</label>
-      <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required
+             value="<?php echo htmlspecialchars($_POST["firstName"], ENT_QUOTES); ?>">
     </div>
     <div class="form-group">
       <label for="lastName">Last Name:</label>
-      <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required
+             value="<?php echo htmlspecialchars($_POST["lastName"], ENT_QUOTES); ?>">
     </div>
+      <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required
+                 value="<?php echo htmlspecialchars($_POST["username"], ENT_QUOTES); ?>">
+      </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required
+             value="<?php echo htmlspecialchars($_POST["email"], ENT_QUOTES); ?>">
     </div>
+      <div class="form-group">
+          <label for="phone">Phone number:</label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required
+                 value="<?php echo htmlspecialchars($_POST["phone"], ENT_QUOTES); ?>">
+      </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required
+             value="<?php echo htmlspecialchars($_POST["password"], ENT_QUOTES); ?>">
     </div>
     <div class="form-group">
       <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+      <input type="password" class="form-control" id="confirmPassword" name="confirm_password" placeholder="Confirm your password" required
+             value="<?php echo htmlspecialchars($_POST["confirm_password"], ENT_QUOTES); ?>">
     </div>
     <button type="submit" class="btn btn-salon btn-block">Sign Up</button>
   </form>
   <div class="text-center mt-3">
-    <a href="login.php">Already have an account? Login</a>
+    <a href="<?php echo "/User-Interface/login.php"?>">Already have an account? Login</a>
   </div>
 </div>
 

@@ -1,6 +1,11 @@
 <?php
 include "global.php";
-$loginResponse = user_manager::logInUser($_POST["username"], $_POST["password"]);
+
+$username = mysqli_real_escape_string($connection, $_POST["username"]);
+$password = mysqli_real_escape_string($connection, $_POST["password"]);
+# encrypt password
+$loginResponse = user_manager::logInUser($username, $password);
+
 if($loginResponse["errorCode"] == 0){
     echo "login successful";
 } else {
