@@ -170,7 +170,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #ffbacb;
+  color: #800020;
 }
 
 .navbar .dropdown ul {
@@ -1517,7 +1517,9 @@ section {
 }
 
 .contact .php-email-form button[type=submit]:hover {
-  background: #ffbacb;
+  transition: 0.5s;
+  background: #fff;
+  color: #800020;
 }
 
 @keyframes animate-loading {
@@ -1663,7 +1665,9 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-  background: #5ab652;
+  transition: 0.5s;
+  background: #fff;
+  color: #800020;
 }
 
 #footer .footer-top .social-links {
@@ -1686,9 +1690,9 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-  background: #5ab652;
-  color: #fff;
-  text-decoration: none;
+  transition: 0.5s;
+  background: #fff;
+  color: #800020;
 }
 
 #footer .footer-bottom {
