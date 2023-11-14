@@ -6,7 +6,7 @@ $subject = $_POST['subject'] ?? '';
 $message = $_POST['message'] ?? '';
 
 // Replace 'contact@example.com' with the email address where you want to receive the form submissions
-$receiving_email_address = 'contact@example.com';
+$receiving_email_address = 'grenier.software@gmail.com';
 
 // Set email headers
 $headers = "From: $name <$email>" . "\r\n";
