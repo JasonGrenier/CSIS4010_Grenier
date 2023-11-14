@@ -57,8 +57,8 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #ffbacb;
-  color: #fff;
+  background: #000;
+  color: #800020;
 }
 
 .back-to-top.active {
@@ -206,7 +206,7 @@ h6 {
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
-  color: #ffbacb;
+  color: #800020;
 }
 
 .navbar .dropdown:hover>ul {
