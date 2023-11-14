@@ -1156,7 +1156,7 @@ section {
   height: 40px;
   opacity: 0;
   transition: bottom ease-in-out 0.4s;
-  background: rgba(124, 197, 118, 0.8);
+  background: #800020;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1323,7 +1323,7 @@ section {
   z-index: 1;
   font-size: 12px;
   padding: 4px 25px 6px 25px;
-  background: #eaf6e9;
+  background: #ffbacb;
   color: #800020;
   border-radius: 50px;
   text-transform: uppercase;
@@ -1404,7 +1404,7 @@ section {
   float: left;
   width: 44px;
   height: 44px;
-  background: #eaf6e9;
+  background: #ffbacb;
   display: flex;
   justify-content: center;
   align-items: center;
