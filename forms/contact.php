@@ -1,11 +1,12 @@
 <?php
-$receiving_email_address = 'grenier.software@gmail.com'; // Replace with your email address
-
 // Get form data
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $subject = $_POST['subject'] ?? '';
 $message = $_POST['message'] ?? '';
+
+// Replace 'contact@example.com' with the email address where you want to receive the form submissions
+$receiving_email_address = 'contact@example.com';
 
 // Set email headers
 $headers = "From: $name <$email>" . "\r\n";
@@ -18,12 +19,6 @@ $email_message = "Name: $name\n";
 $email_message .= "Email: $email\n";
 $email_message .= "Subject: $subject\n\n";
 $email_message .= "Message:\n$message";
-
-// Set SMTP configuration
-$smtp_username = 'kmbeautybot@gmail.com';
-$smtp_password = '#ReallyGoodHair20';
-$smtp_host = 'smtp.gmail.com';
-$smtp_port = '587';
 
 // Send email using PHP's mail() function
 if (mail($receiving_email_address, $subject, $email_message, $headers)) {
