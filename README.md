@@ -1,3 +1,0 @@
-Jason Grenier - Software Engineering Project - CSIS 4010
-
-Coming soon...
