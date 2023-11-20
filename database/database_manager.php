@@ -4,16 +4,20 @@ class database_manager {
     private $connection;
 
     private function __construct() {
-        $host = "localhost";
+        $host = "127.0.0.1:8889";
         $username = "root";
         $password = "root";
         $dbname = "kmbeauty";
 
         $this->connection = new mysqli($host, $username, $password, $dbname);
 
-        if($this->connection->connect_error){
+        if ($this->connection->connect_error) {
             die("Connection failed: " . $this->connection->connect_error);
         }
+
+        // Change the user's authentication method
+        //$this->connection->query("ALTER USER '{$username}'@'{$host}' IDENTIFIED WITH mysql_native_password BY '{$password}'");
+        //$this->connection->query("FLUSH PRIVILEGES");
     }
 
     public static function getInstance(){

@@ -58,8 +58,8 @@
           <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Schedule</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Kerri</a></li>
-              <li><a href="#">Mel</a></li>
+              <li><a href="book.php?stylist=Kerri">Kerri</a></li>
+              <li><a href="book.php?stylist=Mel">Mel</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -552,7 +552,7 @@
             <li class="na">Product recommendations</li>
           </ul>
           <div class="btn-wrap">
-            <a href="#" class="btn-buy">Book Now</a>
+            <a href="book.php?stylist=Kerri" class="btn-buy">Book Now</a>
           </div>
         </div>
       </div>
@@ -570,7 +570,7 @@
             <li>Polish choices</li>
           </ul>
           <div class="btn-wrap">
-            <a href="#" class="btn-buy">Book Now</a>
+            <a href="book.php?stylist=Mel" class="btn-buy">Book Now</a>
           </div>
         </div>
       </div>
@@ -587,7 +587,7 @@
             <li>Post-color care advice</li>
           </ul>
           <div class="btn-wrap">
-            <a href="#" class="btn-buy">Book Now</a>
+            <a href="book.php?stylist=Kerri" class="btn-buy">Book Now</a>
           </div>
         </div>
       </div>
