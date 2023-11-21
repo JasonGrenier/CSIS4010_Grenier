@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2023 at 10:20 PM
+-- Generation Time: Nov 21, 2023 at 06:25 AM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -24,53 +24,116 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `appointments_test`
+-- Table structure for table `Appointment`
 --
 
-CREATE TABLE `appointments_test` (
-  `appointment_id` int(11) NOT NULL,
+CREATE TABLE `Appointment` (
+  `AppointmentID` int(11) NOT NULL,
   `StaffID` int(11) DEFAULT NULL,
-  `appointment_date` date DEFAULT NULL,
-  `start_time` time DEFAULT NULL,
-  `end_time` time DEFAULT NULL,
-  `customer_name` varchar(50) NOT NULL,
-  `customer_contact` varchar(20) DEFAULT NULL
+  `AppointmentDate` date DEFAULT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL,
+  `ClientID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `appointments_test`
+-- Dumping data for table `Appointment`
 --
 
-INSERT INTO `appointments_test` (`appointment_id`, `StaffID`, `appointment_date`, `start_time`, `end_time`, `customer_name`, `customer_contact`) VALUES
-(2, 4, '2023-11-20', '10:00:00', '11:00:00', 'John Doe', '123-456-7890'),
-(3, 4, '2023-11-20', '13:00:00', '15:00:00', 'John Doe', '123-456-7890'),
-(5, 4, '2023-12-04', '13:00:00', '15:00:00', 'Jane Doe', '123-456-7890');
+INSERT INTO `Appointment` (`AppointmentID`, `StaffID`, `AppointmentDate`, `StartTime`, `EndTime`, `ClientID`) VALUES
+(34, 5, '2023-11-22', '14:00:00', '15:00:00', 2),
+(35, 5, '2023-11-23', '09:00:00', '10:00:00', 2),
+(36, 4, '2023-11-24', '16:00:00', '17:00:00', 4),
+(37, 4, '2023-11-25', '10:30:00', '11:30:00', 4),
+(38, 4, '2023-11-26', '14:30:00', '15:30:00', 4),
+(39, 5, '2023-11-27', '11:00:00', '12:00:00', 1),
+(40, 5, '2023-11-28', '13:30:00', '14:30:00', 2),
+(41, 5, '2023-11-29', '09:30:00', '10:30:00', 4),
+(42, 4, '2023-11-20', '10:00:00', '11:00:00', 1),
+(43, 4, '2023-11-21', '14:00:00', '15:30:00', 1),
+(44, 4, '2023-11-22', '12:30:00', '14:30:00', 1),
+(45, 5, '2023-11-23', '11:30:00', '12:30:00', 2),
+(46, 5, '2023-11-24', '10:00:00', '11:30:00', 2),
+(47, 5, '2023-11-25', '09:00:00', '12:00:00', 2),
+(48, 4, '2023-11-26', '14:00:00', '16:00:00', 4),
+(49, 4, '2023-11-27', '11:30:00', '13:30:00', 4),
+(50, 4, '2023-11-28', '09:00:00', '12:00:00', 4),
+(51, 5, '2023-11-29', '12:00:00', '13:30:00', 1),
+(52, 5, '2023-11-30', '10:30:00', '12:30:00', 2),
+(53, 5, '2023-12-01', '09:30:00', '11:00:00', 4),
+(54, 4, '2023-12-20', '10:00:00', '11:00:00', 1),
+(55, 4, '2023-12-21', '14:00:00', '15:30:00', 1),
+(56, 4, '2023-12-22', '12:30:00', '14:30:00', 1),
+(57, 5, '2023-12-23', '11:30:00', '12:30:00', 2),
+(58, 5, '2023-12-24', '10:00:00', '11:30:00', 2),
+(59, 5, '2023-12-25', '09:00:00', '12:00:00', 2),
+(60, 4, '2023-12-26', '14:00:00', '16:00:00', 4),
+(61, 4, '2023-12-27', '11:30:00', '13:30:00', 4),
+(62, 4, '2023-12-28', '09:00:00', '12:00:00', 4),
+(63, 5, '2023-11-29', '12:00:00', '13:30:00', 1),
+(64, 5, '2023-11-30', '10:30:00', '12:30:00', 2),
+(65, 5, '2023-12-01', '09:30:00', '11:00:00', 4),
+(66, 4, '2023-12-07', '10:00:00', '11:00:00', 1),
+(67, 4, '2023-12-08', '14:00:00', '15:30:00', 1),
+(68, 4, '2023-12-09', '12:30:00', '14:30:00', 1),
+(69, 5, '2023-12-10', '11:30:00', '12:30:00', 2),
+(70, 5, '2023-12-11', '10:00:00', '11:30:00', 2),
+(71, 5, '2023-12-12', '09:00:00', '12:00:00', 2),
+(72, 4, '2023-12-13', '14:00:00', '16:00:00', 4),
+(73, 4, '2023-12-14', '11:30:00', '13:30:00', 4),
+(74, 4, '2023-12-15', '09:00:00', '12:00:00', 4),
+(75, 5, '2023-11-16', '12:00:00', '13:30:00', 1),
+(76, 5, '2023-11-17', '10:30:00', '12:30:00', 2),
+(77, 5, '2023-12-18', '09:30:00', '11:00:00', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `availability_test`
+-- Table structure for table `Availability`
 --
 
-CREATE TABLE `availability_test` (
-  `availability_id` int(11) NOT NULL,
+CREATE TABLE `Availability` (
+  `AvailabilityID` int(11) NOT NULL,
   `StaffID` int(11) DEFAULT NULL,
-  `day_of_week` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') DEFAULT NULL,
-  `start_time` time DEFAULT NULL,
-  `end_time` time DEFAULT NULL
+  `DayOfWeek` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') DEFAULT NULL,
+  `StartTime` time DEFAULT NULL,
+  `EndTime` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `availability_test`
+-- Dumping data for table `Availability`
 --
 
-INSERT INTO `availability_test` (`availability_id`, `StaffID`, `day_of_week`, `start_time`, `end_time`) VALUES
+INSERT INTO `Availability` (`AvailabilityID`, `StaffID`, `DayOfWeek`, `StartTime`, `EndTime`) VALUES
 (1, 4, 'Monday', '09:00:00', '17:00:00'),
 (3, 4, 'Tuesday', '09:00:00', '17:00:00'),
 (4, 5, 'Tuesday', '10:00:00', '17:00:00'),
 (5, 4, 'Wednesday', '10:00:00', '17:00:00'),
 (6, 4, 'Thursday', '10:00:00', '17:00:00'),
 (7, 4, 'Friday', '10:00:00', '13:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Client`
+--
+
+CREATE TABLE `Client` (
+  `ClientID` int(11) NOT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Phone` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Client`
+--
+
+INSERT INTO `Client` (`ClientID`, `FirstName`, `LastName`, `Email`, `Phone`) VALUES
+(1, 'Jason', 'Grenier', 'grenier.software@gmail.com', '111-222-3333'),
+(2, 'Sally', 'Joe', 'scupofjoe@gmail.com', '5082223344'),
+(4, 'Lucia', 'Manzo', 'bestbaker@yahoo.com', '1112224444');
 
 -- --------------------------------------------------------
 
@@ -141,46 +204,30 @@ INSERT INTO `Staff` (`StaffID`, `SalonID`, `FirstName`, `LastName`, `Phone`, `Em
 (4, 4, 'Kerri', 'Demoura', '+1 774-306-4001', 'k.m.beautylounge411@gmail.com'),
 (5, 4, 'Mel', 'Nyberg', '+1 774-306-4001', 'k.m.beautylounge411@gmail.com');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `User`
---
-
-CREATE TABLE `User` (
-  `UserID` int(11) NOT NULL,
-  `Username` varchar(50) NOT NULL,
-  `Password` varchar(100) NOT NULL,
-  `FirstName` varchar(50) DEFAULT NULL,
-  `LastName` varchar(50) DEFAULT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Phone` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `User`
---
-
-INSERT INTO `User` (`UserID`, `Username`, `Password`, `FirstName`, `LastName`, `Email`, `Phone`) VALUES
-(1, 'JGrenier12', 'Password1', 'Jason', 'Grenier', 'grenier.software@gmail.com', '774-254-2429');
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `appointments_test`
+-- Indexes for table `Appointment`
 --
-ALTER TABLE `appointments_test`
-  ADD PRIMARY KEY (`appointment_id`),
+ALTER TABLE `Appointment`
+  ADD PRIMARY KEY (`AppointmentID`),
+  ADD KEY `StaffID` (`StaffID`),
+  ADD KEY `FK_ClientID` (`ClientID`);
+
+--
+-- Indexes for table `Availability`
+--
+ALTER TABLE `Availability`
+  ADD PRIMARY KEY (`AvailabilityID`),
   ADD KEY `StaffID` (`StaffID`);
 
 --
--- Indexes for table `availability_test`
+-- Indexes for table `Client`
 --
-ALTER TABLE `availability_test`
-  ADD PRIMARY KEY (`availability_id`),
-  ADD KEY `StaffID` (`StaffID`);
+ALTER TABLE `Client`
+  ADD PRIMARY KEY (`ClientID`);
 
 --
 -- Indexes for table `Salon`
@@ -203,26 +250,26 @@ ALTER TABLE `Staff`
   ADD KEY `SalonID` (`SalonID`);
 
 --
--- Indexes for table `User`
---
-ALTER TABLE `User`
-  ADD PRIMARY KEY (`UserID`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `appointments_test`
+-- AUTO_INCREMENT for table `Appointment`
 --
-ALTER TABLE `appointments_test`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `Appointment`
+  MODIFY `AppointmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
--- AUTO_INCREMENT for table `availability_test`
+-- AUTO_INCREMENT for table `Availability`
 --
-ALTER TABLE `availability_test`
-  MODIFY `availability_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `Availability`
+  MODIFY `AvailabilityID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `Client`
+--
+ALTER TABLE `Client`
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Salon`
@@ -243,26 +290,21 @@ ALTER TABLE `Staff`
   MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `User`
---
-ALTER TABLE `User`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `appointments_test`
+-- Constraints for table `Appointment`
 --
-ALTER TABLE `appointments_test`
-  ADD CONSTRAINT `appointments_test_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`);
+ALTER TABLE `Appointment`
+  ADD CONSTRAINT `FK_ClientID` FOREIGN KEY (`ClientID`) REFERENCES `Client` (`ClientID`),
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`);
 
 --
--- Constraints for table `availability_test`
+-- Constraints for table `Availability`
 --
-ALTER TABLE `availability_test`
-  ADD CONSTRAINT `availability_test_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`);
+ALTER TABLE `Availability`
+  ADD CONSTRAINT `availability_ibfk_1` FOREIGN KEY (`StaffID`) REFERENCES `Staff` (`StaffID`);
 
 --
 -- Constraints for table `Service`
