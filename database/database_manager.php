@@ -4,9 +4,9 @@ class database_manager {
     private $connection;
 
     private function __construct() {
-        $host = "127.0.0.1:8889";
-        $username = "root";
-        $password = "root";
+        $host = "kmbeautyDB";
+        $username = "_gateway.lxd";
+        $password = "";
         $dbname = "kmbeauty";
 
         $this->connection = new mysqli($host, $username, $password, $dbname);
