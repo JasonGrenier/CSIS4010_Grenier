@@ -65,36 +65,41 @@
     }
 
     echo '<table class="table table-bordered">';
-    echo '<thead class="thead-dark"><tr><th>Date</th><th>Time Slot</th><th>Status</th><th>Book</th></tr></thead>';
+    echo '<thead class="thead-dark"><tr><th>Status</th><th>Date</th><th>Time</th><th>Book</th></tr></thead>';
     echo '<tbody>';
 
-    foreach ($timeSlots as $date => $slots) {
-        foreach ($slots as $slot) {
-            $status = 'Available';
-            if (isset($bookedAppointments[$date])) {
-                foreach ($bookedAppointments[$date] as $bookedSlot) {
-                    if ($slot >= $bookedSlot['start'] && $slot < $bookedSlot['end']) {
-                        $status = 'Booked';
-                        $disabled = "disabled";
-                        $color = "red";
-                        break;
-                    } else {
-                    	$color = "green";
-                    	}
+foreach ($timeSlots as $date => $slots) {
+    foreach ($slots as $slot) {
+        $status = 'Available';
+        $startTime = date('h:i A', strtotime($slot));
+        $endTime = date('h:i A', strtotime('+30 minutes', strtotime($slot)));
+        $dateFormatted = date("l, m/d", strtotime($date));
+        echo "<tr>";
+        if (isset($bookedAppointments[$date])) {
+            foreach ($bookedAppointments[$date] as $bookedSlot) {
+                if ($slot >= $bookedSlot['start'] && $slot < $bookedSlot['end']) {
+                    $status = 'Booked';
+                    $disabled = "disabled";
+                    $color = "red";
+                    break;
+                } else {
+                    $color = "green";
                 }
             }
-			$dateFormatted = (int) strtotime($date);
-			$dateFormatted = date("l, m/d", $dateFormatted);
-			$startTime = date('h:i A', strtotime($slot));
-			$endTime = date('h:i A', strtotime('+30 minutes', strtotime($slot)));
-			echo "<tr><td>$dateFormatted</td><td>$startTime - $endTime</td><td style='color: $color'>$status</td>";
-            $startTime = date('h:i A', strtotime($slot));
-			
-            if($status != "Booked"){
-            	echo "<td><a href='external_api.php' class='btn btn-sm btn-primary' $disabled>Book</a></td></tr>";
-            }
         }
+		echo "<td style='color: $color'>$status</td>"; 
+        echo "<td>$dateFormatted</td>";
+        $startPrint = date('h:i A', strtotime('-30 minutes', strtotime($slot)));
+        $endPrint = date('h:i A', strtotime('-30 minutes', strtotime($endTime)));
+        echo "<td>$startPrint - $endPrint</td>";
+        if($status != "Booked"){
+        	echo "<td><a href='external_api.php' class='btn btn-sm btn-primary' $disabled>Book</a></td>";
+        }
+        echo "</tr>";
     }
+}
+
+
 
     echo '</tbody></table></div></div>';
     ?>
