@@ -24,7 +24,6 @@ if (isset($_GET['stylist'])) {
     $stylistQuery = "SELECT * FROM Staff";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +42,6 @@ if (isset($_GET['stylist'])) {
                 $staffID = $row["StaffID"];
                 $firstName = $row["FirstName"];
                 $lastName = $row["LastName"];
-                //$lastAvailableTime = $row["LastAvailableTime"];
-                //$firstAvailableTime = $row["FirstAvailableTime"];
-
                 echo "<div class='card mt-4'>";
                 echo "<div class='card-header'><h2>$firstName</h2></div>";
                 echo "<div class='card-body'>";
@@ -61,30 +57,25 @@ if (isset($_GET['stylist'])) {
                     <tbody>
                         <?php
                         $userLoginTimestamp = time();
-						
-						$startDate = date('Y-m-d', $userLoginTimestamp);
-						$weekEndDate = date('Y-m-d', strtotime('+2 months', $userLoginTimestamp));
+                        $startDate = date('Y-m-d', $userLoginTimestamp);
 						$endDate = date('Y-m-d', strtotime('+2 months', $userLoginTimestamp));
                         $startTime = strtotime($startDate);
                         $endTime = strtotime($endDate);
                         $interval = 30 * 60;
-
                         while ($startTime <= $endTime) {
-                            $weekStartDate = date('l m/d', strtotime('Monday', $startTime));
-							$queryStartTime = date('Y-m-d', strtotime('Monday', $startTime));
+                            $weekStartDate = date('l m/d', strtotime('last Monday', $startTime));
+							$queryStartTime = date('Y-m-d', strtotime('last Monday', $startTime));
                         	$queryEndTime = date('Y-m-d', strtotime('Friday', $startTime));
                         	$weekEndDate = date('l m/d', strtotime('Friday', $userLoginTimestamp));
                             echo "<tr>";
-    						echo "<td>$weekStartDate - $queryEndTime</td>";
-
-                            
+    						echo "<td>$weekStartDate - $weekEndDate</td>";                            
 							$availabilityQuery = "SELECT Staff.StaffID, Staff.FirstName, 
-						    ((TIME_TO_SEC(TIMEDIFF(availability_test.end_time, availability_test.start_time)) - 
-						    COALESCE(SUM(TIME_TO_SEC(TIMEDIFF(appointments_test.end_time, appointments_test.start_time))), 0)) / 1800) AS available_slots,
-						    all_days.day_of_week
+						    ((TIME_TO_SEC(TIMEDIFF(Availability.EndTime, Availability.StartTime)) - 
+						    COALESCE(SUM(TIME_TO_SEC(TIMEDIFF(Appointment.EndTime, Appointment.StartTime))), 0)) / 1800) AS available_slots,
+						    all_days.DayOfWeek
 						FROM Staff
 						CROSS JOIN (
-						    SELECT 'Monday' AS day_of_week
+						    SELECT 'Monday' AS DayOfWeek
 						    UNION SELECT 'Tuesday'
 						    UNION SELECT 'Wednesday'
 						    UNION SELECT 'Thursday'
@@ -92,18 +83,15 @@ if (isset($_GET['stylist'])) {
 						    UNION SELECT 'Saturday'
 						    UNION SELECT 'Sunday'
 						) AS all_days
-						LEFT JOIN availability_test ON Staff.StaffID = availability_test.StaffID
-						    AND availability_test.day_of_week = all_days.day_of_week
-						LEFT JOIN appointments_test ON availability_test.StaffID = appointments_test.StaffID
-						    AND availability_test.day_of_week = DAYNAME(appointments_test.appointment_date)
-						    AND appointments_test.appointment_date BETWEEN '$queryStartTime' AND '$queryEndTime'
-						GROUP BY Staff.StaffID, availability_test.start_time, availability_test.end_time, all_days.day_of_week;
+						LEFT JOIN Availability ON Staff.StaffID = Availability.StaffID
+						    AND Availability.DayOfWeek = all_days.DayOfWeek
+						LEFT JOIN Appointment ON Availability.StaffID = Appointment.StaffID
+						    AND Availability.DayOfWeek = DAYNAME(Appointment.AppointmentDate)
+						    AND Appointment.AppointmentDate BETWEEN '$queryStartTime' AND '$queryEndTime'
+						GROUP BY Staff.StaffID, Availability.StartTime, Availability.EndTime, all_days.DayOfWeek;
 						";
-							$data = $connection->query($availabilityQuery);
-							
-
+						$data = $connection->query($availabilityQuery);
 						$stylists = [];
-						
 						foreach ($data as $entry) {
 						    $staffID = $entry["StaffID"];
 						    $slots = $entry["available_slots"];
@@ -113,33 +101,29 @@ if (isset($_GET['stylist'])) {
 						        }
 						        $stylists[$staffID] += $slots;
 						    }
-						}
-							
-							$staffID = $row["StaffID"];
-                            echo "<td>$stylists[$staffID]</td>";
-                            echo "<td><a href='book_expanded.php?slotStart=$queryStartTime&slotEnd=$queryEndTime&stylist=$stylist' class='btn btn-sm btn-primary' $disabled>Book</a></td>";
-    						echo "</tr>";
-    						$startTime = strtotime('+7 days', $startTime);
-                        }
-                        ?>
+						}	
+						$staffID = $row["StaffID"];
+                        echo "<td>$stylists[$staffID]</td>";
+                        echo "<td><a href='book_expanded.php?slotStart=$queryStartTime&slotEnd=$queryEndTime&stylist=$stylist' class='btn btn-sm btn-primary' $disabled>Book</a></td>";
+						echo "</tr>";
+						$startTime = strtotime('+7 days', $startTime);
+                    }
+                    ?>
                     </tbody>
                 </table>
                 <?php
                 echo "</div>"; 
                 echo "</div>"; 
-            }
+	        }
         } else {
             echo "No stylists available";
         }
         ?>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+	</body>
 </html>
-
 <?php
 $connection->close();
-?>

@@ -29,16 +29,16 @@
     for ($day = strtotime($startDate); $day <= strtotime($endDate); $day = strtotime('+1 day', $day)) {
         $currentDate = date('Y-m-d', $day);
 
-        $queryAvailability = "SELECT start_time, end_time FROM availability_test 
+        $queryAvailability = "SELECT StartTime, EndTime FROM Availability 
                               WHERE StaffID IN (SELECT StaffID FROM Staff WHERE FirstName = '$stylistName') 
-                              AND day_of_week = DAYNAME('$currentDate')";
+                              AND DayOfWeek = DAYNAME('$currentDate')";
         
         $availabilityResult = $connection->query($queryAvailability);
 
         if ($availabilityResult->num_rows > 0) {
             $availabilityData = $availabilityResult->fetch_assoc();
-            $startAvailability = strtotime($currentDate . ' ' . $availabilityData['start_time']);
-            $endAvailability = strtotime($currentDate . ' ' . $availabilityData['end_time']);
+            $startAvailability = strtotime($currentDate . ' ' . $availabilityData['StartTime']);
+            $endAvailability = strtotime($currentDate . ' ' . $availabilityData['EndTime']);
 
             while ($startAvailability < $endAvailability) {
                 $timeSlots[$currentDate][] = date('H:i', $startAvailability);
@@ -47,8 +47,8 @@
         }
     }
     
-    $queryAppointments = "SELECT appointment_date, start_time, end_time FROM appointments_test 
-                          WHERE appointment_date BETWEEN '$startDate' AND '$endDate' 
+    $queryAppointments = "SELECT AppointmentDate, StartTime, EndTime FROM Appointment 
+                          WHERE AppointmentDate BETWEEN '$startDate' AND '$endDate' 
                           AND StaffID IN (SELECT StaffID FROM Staff WHERE FirstName = '$stylistName')";
 
     $appointmentsResult = $connection->query($queryAppointments);
@@ -56,9 +56,9 @@
     $bookedAppointments = [];
     if ($appointmentsResult->num_rows > 0) {
         while ($row = $appointmentsResult->fetch_assoc()) {
-            $bookedDate = $row['appointment_date'];
-            $startTime = $row['start_time'];
-            $endTime = $row['end_time'];
+            $bookedDate = $row['AppointmentDate'];
+            $startTime = $row['StartTime'];
+            $endTime = $row['EndTime'];
 
             $bookedAppointments[$bookedDate][] = ['start' => $startTime, 'end' => $endTime];
         }
@@ -85,10 +85,11 @@
             }
 			$dateFormatted = (int) strtotime($date);
 			$dateFormatted = date("l, m/d", $dateFormatted);
-            $endTime = date('h:i A', strtotime('+30 minutes', strtotime($slot)));
-            $startTime = date('h:i A', strtotime($slot));
+			$startTime = date('h:i A', strtotime($slot));
+			$endTime = date('h:i A', strtotime('+30 minutes', strtotime($slot)));
 			echo "<tr><td>$dateFormatted</td><td>$startTime - $endTime</td><td style='color: $color'>$status</td>";
-
+            $startTime = date('h:i A', strtotime($slot));
+			
             if($status != "Booked"){
             	echo "<td><a href='external_api.php' class='btn btn-sm btn-primary' $disabled>Book</a></td></tr>";
             }
