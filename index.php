@@ -1,7 +1,14 @@
+<?php
+include('global.php');
+$salonID = 4;
+$servicesQuery = "SELECT ServiceID, SalonID, ServiceName, Description, Price 
+                  FROM Service 
+                  WHERE SalonID = $salonID";
+
+$result = $connection->query($servicesQuery);
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -486,7 +493,7 @@
 
         <div class="section-title" data-aos="fade-up">
           <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p>
+          <p>Meet our amazing team of trained stylists.</p>
         </div>
 
         <div class="row">
@@ -539,58 +546,38 @@
     </div>
 
     <div class="row">
-
-      <div class="col-lg-4 col-md-6">
-        <div class="box" data-aos="zoom-in" data-aos-delay="100">
-          <h3>Haircut & Styling</h3>
-          <h4><sup>$</sup>50<span> / session</span></h4>
-          <ul>
-            <li>Customized haircut</li>
-            <li>Professional styling</li>
-            <li>Consultation included</li>
-            <li class="na">Additional treatments available</li>
-            <li class="na">Product recommendations</li>
-          </ul>
-          <div class="btn-wrap">
-            <a href="book.php?stylist=Kerri" class="btn-buy">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
-        <div class="box recommended" data-aos="zoom-in">
-          <span class="recommended-badge">Recommended</span>
-          <h3>Manicure & Pedicure</h3>
-          <h4><sup>$</sup>40<span> / session</span></h4>
-          <ul>
-            <li>Complete manicure</li>
-            <li>Pedicure with massage</li>
-            <li>Nail art available</li>
-            <li>Various nail finishes</li>
-            <li>Polish choices</li>
-          </ul>
-          <div class="btn-wrap">
-            <a href="book.php?stylist=Mel" class="btn-buy">Book Now</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
-        <div class="box" data-aos="zoom-in" data-aos-delay="100">
-          <h3>Color & Highlights</h3>
-          <h4><sup>$</sup>80<span> / session</span></h4>
-          <ul>
-            <li>Full hair coloring</li>
-            <li>Highlights and lowlights</li>
-            <li>Color correction</li>
-            <li>Hair treatment options</li>
-            <li>Post-color care advice</li>
-          </ul>
-          <div class="btn-wrap">
-            <a href="book.php?stylist=Kerri" class="btn-buy">Book Now</a>
-          </div>
-        </div>
-      </div>
+      <?php 
+      
+	      if ($result) {
+	      	$services = $result->fetch_all(MYSQLI_ASSOC);
+	    	foreach ($services as $service) {
+	    	echo '<div class="col-lg-4 col-md-6 mt-4 mt-lg-0" style="padding: 10px">';
+	    	echo "<div class='box' data-aos='zoom-in' data-aos-delay='100'>";
+	      	$serviceName = $service['ServiceName'];
+	      	echo "<h3>" . "$serviceName". "</h3>";
+	      	$cost = $service['Price'];
+	      	echo '<h4><sup>$</sup>' . $cost . '<span> / session</span></h4>';
+	      	echo "<ul>";
+	      	$description = $service['Description'];
+	      	echo "<li> " . $description . "</li>";
+	      	echo "</ul>";
+	      	$book = "book.php";
+	        echo "<div class='btn-wrap'><a href='$book' class='btn-buy'>Book Now</a></div>";
+	        echo "</div>";
+	        echo "</div>";
+		    }
+		  } else {
+			    echo "Error executing query: " . $connection->error;
+		}
+		  $connection->close();     
+	  ?>
+      
+      
+        
+          
+          
+       
+          
 
     </div>
 
@@ -658,8 +645,6 @@
         </div>
 
         <div class="row">
-
-          <div class="col-lg-4">
             <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
@@ -681,11 +666,7 @@
 
             </div>
 
-          </div>
-
         </div>
-
-      </div>
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->

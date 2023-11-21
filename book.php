@@ -3,8 +3,9 @@ include("global.php");
 $slotStart = "";
 $slotEnd = "";
 $disabled = "";
-$stylist = $_GET['stylist'];
+
 if (isset($_GET['stylist'])) {
+	$stylist = $_GET['stylist'];
     $selectedStylist = $_GET['stylist'];
     switch ($selectedStylist) {
         case 'Mel':
@@ -21,6 +22,7 @@ if (isset($_GET['stylist'])) {
     }
 
 } else {
+	$stylist = "";
     $stylistQuery = "SELECT * FROM Staff";
 }
 ?>
@@ -36,7 +38,6 @@ if (isset($_GET['stylist'])) {
     <div class="container">
         <?php
         $stylistResult = $connection->query($stylistQuery);
-
         if ($stylistResult->num_rows > 0) {
             while ($row = $stylistResult->fetch_assoc()) {
                 $staffID = $row["StaffID"];
@@ -103,8 +104,9 @@ if (isset($_GET['stylist'])) {
 						    }
 						}	
 						$staffID = $row["StaffID"];
+						$stylistName = $row["FirstName"];
                         echo "<td>$stylists[$staffID]</td>";
-                        echo "<td><a href='book_expanded.php?slotStart=$queryStartTime&slotEnd=$queryEndTime&stylist=$stylist' class='btn btn-sm btn-primary' $disabled>Book</a></td>";
+                        echo "<td><a href='book_expanded.php?slotStart=$queryStartTime&slotEnd=$queryEndTime&stylist=$stylistName' class='btn btn-sm btn-primary' $disabled>Book</a></td>";
 						echo "</tr>";
 						$startTime = strtotime('+7 days', $startTime);
                     }

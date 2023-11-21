@@ -22,7 +22,7 @@
             <span class="sr-only">Loading...</span>
         </div>
         <!-- Message -->
-        <h1 class="mt-3">You are now being redirected to K & M Beauty's 3rd party scheduling service.</h1>
+        <h1 class="mt-3">Redirecting to K & M Beauty's 3rd party scheduling service.</h1>
     </div>
 
     <!-- Bootstrap JS CDN -->
