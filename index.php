@@ -6,6 +6,8 @@ $servicesQuery = "SELECT ServiceID, SalonID, ServiceName, Description, Price
                   WHERE SalonID = $salonID";
 
 $result = $connection->query($servicesQuery);
+$salonQuery = "SELECT * from Salon WHERE SalonID = $salonID";
+$salonRes = $connection->query($salonQuery);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -643,6 +645,8 @@ $result = $connection->query($servicesQuery);
           <h2>Contact</h2>
           <p>Have a question? Contact us!</p>
         </div>
+        
+        
 
         <div class="row">
             <div class="info d-flex flex-column justify-content-center" data-aos="fade-right">
