@@ -336,6 +336,20 @@ $result = $connection->query($servicesQuery);
             </div>
           </div>
 
+            <div class="col-lg-4 col-md-6 portfolio-item filter-nails">
+                <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/nails2.jpg" class="img-fluid" alt="">
+                    <div class="portfolio-info">
+                        <h4>Nails 1</h4>
+                        <p></p>
+                        <div class="portfolio-links">
+                            <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                            <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
           <div class="col-lg-4 col-md-6 portfolio-item filter-product">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
