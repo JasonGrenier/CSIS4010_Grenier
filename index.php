@@ -41,7 +41,7 @@ $result = $connection->query($servicesQuery);
 <!-- ======= Intro Section ======= -->
 <section id="hero">
     <div class="hero-container">
-        <a href="index.php" class="hero-logo" data-aos="zoom-in"><img src="assets/img/kmbeauty.png" alt=""></a>
+        <a class="hero-logo" data-aos="zoom-in"><img src="assets/img/kmbeauty.png" alt=""></a>
         <h1 data-aos="zoom-in">Welcome To K & M Beauty Lounge</h1>
         <h2 data-aos="fade-up">We are here to help you look and feel your best.</h2>
         <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -53,7 +53,7 @@ $result = $connection->query($servicesQuery);
     <div class="container d-flex align-items-center justify-content-between">
 
         <div class="logo">
-            <a href="index.php"><img src="assets/img/kmbeauty.png" alt="" class="img-fluid"></a>
+            <a href="login.php"><img src="assets/img/kmbeauty.png" alt="" class="img-fluid"></a>
         </div>
 
         <nav id="navbar" class="navbar">
