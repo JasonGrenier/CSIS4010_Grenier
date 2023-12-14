@@ -5,5 +5,5 @@ $id = intval($_GET["id"]);
 //execute the query
 mysqli_query($connection, "delete from Service where ServiceID = $id");
 //redirect to listing page
-header("Location: test.php");
+header("Location: view_services.php");
 ?>

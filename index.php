@@ -689,7 +689,7 @@ $result = $connection->query($servicesQuery);
                 <div class="col-lg-6">
                     <a href="#header" class="scrollto footer-logo"><img src="assets/img/kmbeauty.png" alt=""></a>
                     <h3>K & M Beauty Lounge</h3>
-                    <p>Stay in contact with us!</p>
+                    <p>Stay in touch!</p>
                 </div>
             </div>
 

@@ -20,5 +20,5 @@ if ($query->affected_rows > 0) {
 
 // Close the statement
 $query->close();
-header("Location: test.php");
+header("Location: view_services.php");
 ?>

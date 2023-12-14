@@ -1,5 +1,4 @@
-<?php include("global.php");
-session_start(); ?>
+<?php include("global.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,10 +38,6 @@ session_start(); ?>
                             <input type="number" class="form-control" id="servicePrice" name="servicePrice" required>
                         </div>
                     </form>
-
-                    <form id="addServiceForm">
-                        <!-- Form fields go here -->
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -77,7 +72,7 @@ session_start(); ?>
                 // Queries the database for all services
                 $res = mysqli_query($connection, "SELECT * FROM Service WHERE SalonID = 4;");
                 while ($row = mysqli_fetch_assoc($res)) {
-                    $id = $row["ServiceID"];
+                    $id = intval($row["ServiceID"]);
                     $service = $row["ServiceName"];
                     $desc = $row["Description"];
                     $price = floatval($row["Price"]);
@@ -87,7 +82,7 @@ session_start(); ?>
                         <td><?php echo $desc ?></td>
                         <td><?php echo $price ?></td>
                         <td>
-                            <a href="edit_service.php?id=<?php echo $id; ?>&serviceDescription=<?php echo urlencode($desc);?>&servicePrice=<?php echo urlencode($price);?>&serviceName=<?php echo $service;?>" class="btn btn-sm">
+                            <a href="edit_service.php?id=<?php echo $id;?>&serviceDescription=<?php echo $desc;?>&servicePrice=<?php echo $price?>&serviceName=<?php echo $service;?>" class="btn btn-sm">
                                 <img src='assets/img/edit.png' alt='edit' style='height: 40px;'>
                             </a>
                         </td>
